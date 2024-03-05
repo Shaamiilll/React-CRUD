@@ -5,10 +5,12 @@ import Home from './pages/Home'
 import Login from './pages/Login'
 import Register from './pages/Register'
 import axios from 'axios'
-import {Toaster} from 'react-hot-toast'
-import './App.css'
+import { Toaster } from 'react-hot-toast'
 
-axios.defaults.baseURL ='http://localhost:3000'
+import './App.css'
+import AuthWrapper from './AuthWrapper/AuthWrapper'
+
+axios.defaults.baseURL = 'http://localhost:3000'
 axios.defaults.withCredentials = true
 
 function App() {
@@ -17,12 +19,8 @@ function App() {
   return (
     <>
       <Navbar />
-      <Toaster position="top-center" toastOptions={{duration:2000}}/>
-      <Routes>
-        <Route path='/' element={<Home/>}></Route>
-        <Route path='/register' element={<Register/>}></Route>
-        <Route path='/login' element={<Login/>}></Route>
-      </Routes>
+      <Toaster position="top-center" toastOptions={{ duration: 2000 }} />
+      <AuthWrapper />
     </>
   )
 }
