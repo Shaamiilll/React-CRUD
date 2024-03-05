@@ -1,6 +1,7 @@
 import User from "../model/userModel.js";
 import { hashPassword, comparePassword } from "../helpers/auth.js";
 import jwt from "jsonwebtoken";
+import cloudinaryUploadImage from "../helpers/cloudinary.js";
 
 export const RegisterUser = async (req, res) => {
   try {
@@ -169,12 +170,14 @@ export const UpdateUser = async (req, res) => {
   }
 };
 export const EditUser = async (req, res) => {
-  try {
-    const { email, firstname, phone, userId } = req.body;
 
+  try {
+    const { email, firstname, phone, userId , image } = req.body;
+ 
+   console.log(image);
     const updatedUser = await User.findOneAndUpdate(
       { _id: userId },
-      { $set: { name: firstname, email, phone } },
+      { $set: { name: firstname, email, phone ,image  } },
       { new: true }
     );
 
